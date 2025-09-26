@@ -1,1 +1,16 @@
-r
+import artefactos.*
+import capos.*
+
+describe "Rolando guarda Artefactos en su mochila" {
+  test "Rolando recoge dos artefactos sin problemas" {
+    rolando.recogerArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    assert.equals(rolando.mochila().size(), 2) 
+  }
+
+  test "Rolando quiere recoger un tercer artefacto y no puede" {
+    rolando.recogerArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    assert.throwsException({ rolando.recogerArtefacto(collarDivino)})
+  }
+}

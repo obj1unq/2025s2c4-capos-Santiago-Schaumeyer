@@ -10,6 +10,11 @@ object rolando {
       mochila.add(artefacto)
     }
 
+    method guardarArtefacto(artefacto) {
+      mochila.remove(artefacto)
+      castilloDePiedra.guardarArtefacto(artefacto)
+    }
+
     // Excepcion
     method validarEspacioEnMochila() {
       if ( not (mochila.size() < capacidadDeArtefactos)) {
@@ -23,5 +28,15 @@ object rolando {
         self.error("No se puede agregar el artefacto " + artefacto + " porque ya esta en la mochila")
       }
     }
+}
+
+object castilloDePiedra {
+  const property deposito = []
+
+    method guardarArtefacto(artefacto) {
+        deposito.add(artefacto)
+    }
+
+
 }
 

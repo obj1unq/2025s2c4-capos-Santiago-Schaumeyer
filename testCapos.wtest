@@ -14,3 +14,22 @@ describe "Rolando guarda Artefactos en su mochila" {
     assert.throwsException({ rolando.recogerArtefacto(collarDivino)})
   }
 }
+
+describe "Rolando guarda los artefactos en el castillo de piedra" {
+  test "Rolando llega al castillo y guarda la espada y el libro de hehizos" {
+    rolando.recogerArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    rolando.guardarArtefacto(espadaDelDestino)
+    rolando.guardarArtefacto(libroDeHechizos)
+    assert.equals(rolando.mochila().size(),0) 
+    assert.equals(castilloDePiedra.deposito().size(), 2) 
+  }
+
+  test "Rolando encuentra el collar divino y lo guarda en el castillo, ahora el castillo tiene 3 artefactos" {
+    castilloDePiedra.deposito().add(espadaDelDestino)
+    castilloDePiedra.deposito().add(libroDeHechizos)
+    rolando.recogerArtefacto(collarDivino)
+    rolando.guardarArtefacto(collarDivino)
+    assert.equals(castilloDePiedra.deposito().size(), 3)
+  }
+}

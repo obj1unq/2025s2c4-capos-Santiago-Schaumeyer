@@ -1,11 +1,11 @@
 import artefactos.*
 import capos.*
-
+ 
 describe "Rolando guarda Artefactos en su mochila" {
   test "Rolando recoge dos artefactos sin problemas" {
     rolando.recogerArtefacto(espadaDelDestino)
     rolando.recogerArtefacto(libroDeHechizos)
-    assert.equals(rolando.mochila().size(), 2) 
+    assert.equals(rolando.mochilaActual().size(), 2) 
   }
 
   test "Rolando quiere recoger un tercer artefacto y no puede" {
@@ -21,7 +21,7 @@ describe "Rolando guarda los artefactos en el castillo de piedra" {
     rolando.recogerArtefacto(libroDeHechizos)
     rolando.guardarArtefacto(espadaDelDestino)
     rolando.guardarArtefacto(libroDeHechizos)
-    assert.equals(rolando.mochila().size(),0) 
+    assert.equals(rolando.mochilaActual().size(),0) 
     assert.equals(castilloDePiedra.deposito().size(), 2) 
   }
 
@@ -40,5 +40,19 @@ describe "Total de artefactos de Rolando" {
     rolando.recogerArtefacto(collarDivino)
     rolando.recogerArtefacto(libroDeHechizos)
     assert.equals(rolando.todosLosArtefactos().size(), 3)
+  }
+}
+
+describe "Saber la historia de los encuentros con los artefactos" {
+  test "Mostrar el historial de los artefactos que rolando fue encontrando " {
+    rolando.encontrarArtefacto(espadaDelDestino)
+    rolando.encontrarArtefacto(libroDeHechizos)
+    rolando.encontrarArtefacto(collarDivino)
+    rolando.guardarArtefacto(espadaDelDestino)
+    rolando.guardarArtefacto(libroDeHechizos)
+    rolando.encontrarArtefacto(armaduraDeAceroValyrio)
+    rolando.encontrarArtefacto(collarDivino)
+    assert.equals([espadaDelDestino, libroDeHechizos, collarDivino, armaduraDeAceroValyrio, collarDivino], rolando.artefactosEncontrados())
+    
   }
 }

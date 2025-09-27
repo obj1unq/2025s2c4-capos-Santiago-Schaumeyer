@@ -1,1 +1,58 @@
-r
+import artefactos.*
+import capos.*
+ 
+describe "Rolando guarda Artefactos en su mochila" {
+  test "Rolando recoge dos artefactos sin problemas" {
+    rolando.recogerArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    assert.equals(rolando.mochilaActual().size(), 2) 
+  }
+
+  test "Rolando quiere recoger un tercer artefacto y no puede" {
+    rolando.recogerArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    assert.throwsException({ rolando.recogerArtefacto(collarDivino)})
+  }
+}
+
+describe "Rolando guarda los artefactos en el castillo de piedra" {
+  test "Rolando llega al castillo y guarda la espada y el libro de hehizos" {
+    rolando.recogerArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    rolando.guardarArtefacto(espadaDelDestino)
+    rolando.guardarArtefacto(libroDeHechizos)
+    assert.equals(rolando.mochilaActual().size(),0) 
+    assert.equals(castilloDePiedra.deposito().size(), 2) 
+  }
+
+  test "Rolando encuentra el collar divino y lo guarda en el castillo, ahora el castillo tiene 3 artefactos" {
+    castilloDePiedra.deposito().add(espadaDelDestino)
+    castilloDePiedra.deposito().add(libroDeHechizos)
+    rolando.recogerArtefacto(collarDivino)
+    rolando.guardarArtefacto(collarDivino)
+    assert.equals(castilloDePiedra.deposito().size(), 3)
+  }
+}
+
+describe "Total de artefactos de Rolando" {
+  test "Rolando tiene 3 artefactos en total, 1 en el castillo y 2 en la mochila" {
+    castilloDePiedra.guardarArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(collarDivino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    assert.equals(rolando.todosLosArtefactos().size(), 3)
+  }
+}
+
+describe "Saber la historia de los encuentros con los artefactos" {
+  test "Mostrar el historial de los artefactos que rolando fue encontrando " {
+    rolando.encontrarArtefacto(espadaDelDestino)
+    rolando.encontrarArtefacto(libroDeHechizos)
+    rolando.encontrarArtefacto(collarDivino)
+    rolando.guardarArtefacto(espadaDelDestino)
+    rolando.guardarArtefacto(libroDeHechizos)
+    rolando.encontrarArtefacto(armaduraDeAceroValyrio)
+    rolando.encontrarArtefacto(collarDivino)
+    assert.equals([espadaDelDestino, libroDeHechizos, collarDivino, armaduraDeAceroValyrio, collarDivino], rolando.artefactosEncontrados())
+    
+  }
+}

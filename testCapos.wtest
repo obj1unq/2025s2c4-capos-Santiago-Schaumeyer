@@ -33,3 +33,12 @@ describe "Rolando guarda los artefactos en el castillo de piedra" {
     assert.equals(castilloDePiedra.deposito().size(), 3)
   }
 }
+
+describe "Total de artefactos de Rolando" {
+  test "Rolando tiene 3 artefactos en total, 1 en el castillo y 2 en la mochila" {
+    castilloDePiedra.guardarArtefacto(espadaDelDestino)
+    rolando.recogerArtefacto(collarDivino)
+    rolando.recogerArtefacto(libroDeHechizos)
+    assert.equals(rolando.todosLosArtefactos().size(), 3)
+  }
+}

@@ -3,6 +3,9 @@ import artefactos.*
 object rolando {
     const capacidadDeArtefactos = 2
     const property mochila = []
+    var property artefactosTotales = []
+
+    method todosLosArtefactos() = mochila + castilloDePiedra.deposito()
 
     method recogerArtefacto(artefacto) {
       self.validarEspacioEnMochila() 
@@ -11,7 +14,7 @@ object rolando {
     }
 
     method guardarArtefacto(artefacto) {
-      mochila.remove(artefacto)
+      mochila.removeAll(artefacto)
       castilloDePiedra.guardarArtefacto(artefacto)
     }
 
@@ -36,7 +39,5 @@ object castilloDePiedra {
     method guardarArtefacto(artefacto) {
         deposito.add(artefacto)
     }
-
-
 }
 
